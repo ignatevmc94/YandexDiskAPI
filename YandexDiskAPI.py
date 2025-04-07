@@ -3,6 +3,7 @@ import requests
 import time
 from urllib.parse import quote
 from tqdm import tqdm
+import datetime
 
 
 def get_photos():
@@ -31,7 +32,8 @@ def get_photos():
     for name in names:
         if names.count(name) > 1:
             photos[names.index(name)]['file_name'] = \
-                f'{photos[names.index(name)]["file_name"]}_{photos[names.index(name)]["date"]}'
+                (f'{photos[names.index(name)]["file_name"]}'
+                 f'_{datetime.datetime.fromtimestamp(photos[names.index(name)]["date"])}')
     return photos
 
 def new_folder():
